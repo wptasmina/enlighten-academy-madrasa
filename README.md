@@ -6,6 +6,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ```main
 #git pull origin main
+
+#or
+
+git checkout main        # Ensure you're on the correct branch
+git pull origin main     # Pull latest changes
+
 ```
 ```development
 #git pull origin development
