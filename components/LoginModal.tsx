@@ -13,7 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Eye, EyeOff, User, AlertCircle, CheckCircle } from "lucide-react"
-import { log } from "console"
+
 
 interface LoginModalProps {
   isOpen: boolean
