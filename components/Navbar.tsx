@@ -11,6 +11,9 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+
+import { DialogTitle } from "@/components/ui/dialog"; 
+
 import { Badge } from "@/components/ui/badge";
 import {
   Menu,
@@ -25,7 +28,7 @@ import {
   Info,
   MessageSquare,
 } from "lucide-react";
-
+import Image from "next/image";
 
 interface NavbarProps {
   user?: {
@@ -37,20 +40,23 @@ interface NavbarProps {
   onLogout: () => void;
 }
 
+type NavigationItem = {
+  name: string;
+  href: string;
+  icon: React.ElementType;
+  badge?: string;
+  submenu?: {
+    name: string;
+    href: string;
+  }[];
+};
+
 export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigationItems = [
-    {
-      name: "Home",
-      href: "/",
-      icon: Home,
-    },
-    {
-      name: "About Us",
-      href: "/about",
-      icon: Info,
-    },
+  const navigationItems: NavigationItem[] = [
+    { name: "Home", href: "/", icon: Home },
+    { name: "About Us", href: "/about", icon: Info },
     {
       name: "Courses",
       href: "/courses",
@@ -64,27 +70,10 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
         { name: "Kamil Course", href: "/courses#kamil" },
       ],
     },
-    {
-      name: "Teachers",
-      href: "/teachers",
-      icon: Users,
-    },
-    {
-      name: "Admission",
-      href: "/admission",
-      icon: GraduationCap,
-      badge: "New",
-    },
-    {
-      name: "Testimonials",
-      href: "/testimonials",
-      icon: MessageSquare,
-    },
-    {
-      name: "Contact",
-      href: "/contact",
-      icon: Phone,
-    },
+    { name: "Teachers", href: "/teachers", icon: Users },
+    { name: "Admission", href: "/admission", icon: GraduationCap, badge: "New" },
+    { name: "Testimonials", href: "/testimonials", icon: MessageSquare },
+    { name: "Contact", href: "/contact", icon: Phone },
   ];
 
   const getRoleColor = (role: string) => {
@@ -113,28 +102,23 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <div className="bg-green-600 text-white p-2 rounded-lg">
-              <BookOpen className="w-6 h-6" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-gray-800">
-                জামিয়া ইসলামিয়া
-              </h1>
-              <p className="text-xs text-gray-600">মাদ্রাসা</p>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="madrasha logo"
+              width={100}
+              height={40}
+              className="object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-1">
             {navigationItems.map((item, index) => (
               <div key={index} className="relative">
                 {item.submenu ? (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        className="flex items-center space-x-1"
-                      >
+                      <Button variant="ghost" className="flex items-center space-x-1">
                         <item.icon className="w-4 h-4" />
                         <span>{item.name}</span>
                         <ChevronDown className="w-3 h-3" />
@@ -156,11 +140,7 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 ) : (
-                  <Button
-                    variant="ghost"
-                    asChild
-                    className="flex items-center space-x-1"
-                  >
+                  <Button variant="ghost" asChild className="flex items-center space-x-1">
                     <Link href={item.href}>
                       <item.icon className="w-4 h-4" />
                       <span>{item.name}</span>
@@ -181,10 +161,7 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="flex items-center space-x-2 bg-transparent"
-                  >
+                  <Button variant="outline" className="flex items-center space-x-2 bg-transparent">
                     <div className="bg-green-100 p-1 rounded-full">
                       <User className="w-4 h-4 text-green-600" />
                     </div>
@@ -204,62 +181,44 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
                   </div>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard" className="w-full">
-                      Dashboard
-                    </Link>
+                    <Link href="/dashboard">Dashboard</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/profile" className="w-full">
-                      Profile
-                    </Link>
+                    <Link href="/profile">Profile</Link>
                   </DropdownMenuItem>
                   {user.role === "student" && (
                     <>
                       <DropdownMenuItem asChild>
-                        <Link href="/results" className="w-full">
-                          Results
-                        </Link>
+                        <Link href="/results">Results</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link href="/attendance" className="w-full">
-                          Attendance
-                        </Link>
+                        <Link href="/attendance">Attendance</Link>
                       </DropdownMenuItem>
                     </>
                   )}
                   {user.role === "teacher" && (
                     <>
                       <DropdownMenuItem asChild>
-                        <Link href="/classes" className="w-full">
-                          Classes
-                        </Link>
+                        <Link href="/classes">Classes</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link href="/students" className="w-full">
-                          Students
-                        </Link>
+                        <Link href="/students">Students</Link>
                       </DropdownMenuItem>
                     </>
                   )}
                   {user.role === "admin" && (
                     <>
                       <DropdownMenuItem asChild>
-                        <Link href="/admin" className="w-full">
-                          Administration
-                        </Link>
+                        <Link href="/admin">Administration</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link href="/reports" className="w-full">
-                          Reports
-                        </Link>
+                        <Link href="/reports">Reports</Link>
                       </DropdownMenuItem>
                     </>
                   )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link href="/settings" className="w-full">
-                      Settings
-                    </Link>
+                    <Link href="/settings">Settings</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={onLogout} className="text-red-600">
                     Logout
@@ -267,137 +226,67 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button
-                onClick={onLoginClick}
-                className="bg-green-600 hover:bg-green-700"
-              >
+              <Button onClick={onLoginClick} className="bg-green-600 hover:bg-green-700">
                 <LogIn className="w-4 h-4 mr-2" />
                 Login
               </Button>
             )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden">
+            {/* Mobile Menu */}
+          <div className="md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" size="icon">
                   <Menu className="w-6 h-6" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-80">
+                <DialogTitle className="text-lg font-semibold">Menu</DialogTitle>
                 <div className="flex flex-col h-full">
-                  {/* Mobile Header */}
-                  <div className="flex items-center justify-between pb-4 border-b">
-                    <div className="flex items-center space-x-2">
-                      <div className="bg-green-600 text-white p-2 rounded-lg">
-                        <BookOpen className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <Link href="/">
-                          <Image
-                            src="/logo.png" // ✅ your logo path (place it in public/logo.png or update path)
-                            alt="জামিয়া ইসলামিয়া"
-                            width={100}
-                            height={40}
-                            className="object-contain"
-                          />
-                        </Link>
-                        <p className="text-xs text-gray-600">মাদ্রাসা</p>
-                      </div>
-                    </div>
+                  <div className="flex justify-between items-center pb-4 border-b">
+                    <Image src="/logo.png" alt="logo" width={100} height={40} />
                   </div>
-
-                  {/* User Info (Mobile) */}
-                  {user && (
-                    <div className="py-4 border-b">
-                      <div className="flex items-center space-x-3">
-                        <div className="bg-green-100 p-2 rounded-full">
-                          <User className="w-5 h-5 text-green-600" />
-                        </div>
-                        <div>
-                          <p className="font-medium text-gray-800">
-                            {user.name}
-                          </p>
-                          <Badge
-                            className={`text-xs ${getRoleColor(user.role)}`}
-                          >
-                            {getRoleText(user.role)}
-                          </Badge>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Mobile Navigation */}
-                  <div className="flex-1 py-4">
-                    <div className="space-y-2">
-                      {navigationItems.map((item, index) => (
-                        <div key={index}>
-                          <Link
-                            href={item.href}
-                            onClick={() => setIsOpen(false)}
-                            className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
-                          >
-                            <item.icon className="w-5 h-5 text-gray-600" />
-                            <span className="text-gray-800">{item.name}</span>
-                            {item.badge && (
-                              <Badge className="ml-auto text-xs bg-red-500 text-white">
-                                {item.badge}
-                              </Badge>
-                            )}
-                          </Link>
-                          {item.submenu && (
-                            <div className="ml-8 mt-2 space-y-1">
-                              {item.submenu.map((subItem, subIndex) => (
-                                <Link
-                                  key={subIndex}
-                                  href={subItem.href}
-                                  onClick={() => setIsOpen(false)}
-                                  className="block px-3 py-1 text-sm text-gray-600 hover:text-green-600 transition-colors"
-                                >
-                                  {subItem.name}
-                                </Link>
-                              ))}
-                            </div>
+                  <div className="space-y-2 py-4">
+                    {navigationItems.map((item, i) => (
+                      <div key={i}>
+                        <Link
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+                        >
+                          <item.icon className="w-5 h-5 text-gray-600" />
+                          <span>{item.name}</span>
+                          {item.badge && (
+                            <Badge className="ml-auto text-xs bg-red-500 text-white">{item.badge}</Badge>
                           )}
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* User Menu Items (Mobile) */}
-                    {user && (
-                      <div className="mt-6 pt-4 border-t space-y-2">
-                        <Link
-                          href="/dashboard"
-                          onClick={() => setIsOpen(false)}
-                          className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
-                        >
-                          <User className="w-5 h-5 text-gray-600" />
-                          <span className="text-gray-800">Dashboard</span>
                         </Link>
-                        <Link
-                          href="/profile"
-                          onClick={() => setIsOpen(false)}
-                          className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
-                        >
-                          <User className="w-5 h-5 text-gray-600" />
-                          <span className="text-gray-800">Profile</span>
-                        </Link>
+                        {item.submenu && (
+                          <div className="ml-8 mt-2 space-y-1">
+                            {item.submenu.map((sub, j) => (
+                              <Link
+                                key={j}
+                                href={sub.href}
+                                onClick={() => setIsOpen(false)}
+                                className="block px-3 py-1 text-sm text-gray-600 hover:text-green-600"
+                              >
+                                {sub.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                    )}
+                    ))}
                   </div>
-
-                  {/* Mobile Login/Logout */}
-                  <div className="pt-4 border-t">
+                  <div className="mt-auto pt-4 border-t">
                     {user ? (
                       <Button
                         onClick={() => {
                           onLogout();
                           setIsOpen(false);
                         }}
+                        className="w-full border border-red-200 text-red-600"
                         variant="outline"
-                        className="w-full text-red-600 border-red-200 hover:bg-red-50"
                       >
                         Logout
                       </Button>
@@ -418,6 +307,7 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
               </SheetContent>
             </Sheet>
           </div>
+
         </div>
       </div>
     </nav>
