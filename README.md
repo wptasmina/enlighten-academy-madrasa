@@ -2,6 +2,16 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+##main branch taki pull
+
+```main
+#git pull origin main
+```
+```development
+#git pull origin development
+
+```
+
 First, run the development server:
 
 ```bash
