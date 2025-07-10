@@ -12,7 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Eye, EyeOff, User, Lock, AlertCircle, CheckCircle } from "lucide-react"
+import { Eye, EyeOff, User, AlertCircle, CheckCircle } from "lucide-react"
+import { log } from "console"
 
 interface LoginModalProps {
   isOpen: boolean
@@ -55,6 +56,7 @@ export default function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps
 
   // Forgot password state
   const [forgotEmail, setForgotEmail] = useState("")
+  console.log(forgotEmail)
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -129,6 +131,7 @@ export default function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps
     setSuccess("Password reset link has been sent to your email.")
     setIsLoading(false)
   }
+  console.log(handleForgotPassword)
 
   const resetForm = () => {
     setLoginData({ email: "", password: "", role: "", rememberMe: false })
