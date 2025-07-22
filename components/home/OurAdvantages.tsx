@@ -93,7 +93,7 @@ const data = [
 
 function OurAdvantages() {
   return (
-    <section className="bg-[var(--primary-color)] py-8 md:py-16 lg:py-20 xl:py-24 px-4 md:px-8">
+    <section className="bg-[#1f1f1f] py-8 md:py-16 lg:py-20 xl:py-24 px-4 md:px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
         {data.map((item, index) => (
           <div

@@ -1,3 +1,5 @@
+import Copyright from "@/components/Copyright";
+import Footer from "@/components/Footer";
 import About from "@/components/home/About";
 import Admission from "@/components/home/Admission";
 import { HeroSection } from "@/components/home/hero-section";
@@ -12,6 +14,8 @@ export default function Home() {
       <About />
       <Admission />
       <OurAdvantages />
+      <Footer />
+      <Copyright />
     </div>
   );
 }
