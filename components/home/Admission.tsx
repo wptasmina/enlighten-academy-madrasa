@@ -7,7 +7,7 @@ function Admission() {
       {/* Left Section: Image */}
       <div className="lg:w-1/2 w-full h-[450px] relative">
         <Image
-          src="https://cdn.pixabay.com/photo/2016/03/05/08/27/success-1237378_640.jpg"
+          src="https://cdn.pixabay.com/photo/2022/01/16/19/01/candle-6942931_640.jpg"
           alt="Group of smiling graduates"
           fill
           style={{ objectFit: "cover" }}
@@ -22,7 +22,7 @@ function Admission() {
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{
-            backgroundImage: `url('https://cdn.pixabay.com/photo/2016/03/05/08/27/success-1237378_640.jpg')`,
+            backgroundImage: `url('https://cdn.pixabay.com/photo/2017/03/27/13/17/notebook-2178656_640.jpg')`,
           }}
         ></div>
         <div className="absolute inset-0 bg-black/40 z-0"></div>

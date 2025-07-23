@@ -1,55 +1,38 @@
-import Link from "next/link";
+import Image from "next/image";
 
 export const HeroSection = () => {
   return (
-    <section className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 overflow-hidden">
-      <div className="max-w-xl sm:mx-auto lg:max-w-2xl">
-        <div className="flex flex-col mb-1 text-center sm:mb-0">
-          <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-            <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto text-center">
-              <span className="relative inline-block">
-                <svg
-                  viewBox="0 0 52 24"
-                  fill="currentColor"
-                  className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-green-300 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
-                >
-                  <defs>
-                    <pattern
-                      id="e77df901-b9d7-4b9b-822e-16b2d410795b"
-                      x="0"
-                      y="0"
-                      width=".135"
-                      height=".30"
-                    >
-                      <circle cx="1" cy="1" r=".7" />
-                    </pattern>
-                  </defs>
-                  <rect
-                    fill="url(#e77df901-b9d7-4b9b-822e-16b2d410795b)"
-                    width="52"
-                    height="24"
-                  />
-                </svg>
-                <span className="relative">Every</span>
-              </span>{" "}
-              child deserves the best possible start.
-            </h2>
-            <p className="text-base text-gray-700 md:text-lg">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque rem aperiam, eaque ipsa quae.
-            </p>
-          </div>
-          <div>
-            <Link
-              href="/"
-              className="hover:text-gray-100 text-black inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-green-400 hover:bg-green-700 focus:shadow-outline focus:outline-none"
-            >
-              Get started
-            </Link>
-          </div>
+    <section className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://cdn.pixabay.com/photo/2017/03/27/13/17/notebook-2178656_640.jpg" // Replace with actual image URL of graduates
+          alt="Graduates"
+          fill
+          className="w-full h-full object-cover object-left-top md:object-center" // Adjust object-position as needed
+        />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black opacity-70"></div>{" "}
+        {/* Adjust opacity for desired darkness */}
+      </div>
+
+      {/* Content Overlay */}
+      <div className="absolute inset-0 flex items-center justify-start lg:justify-end px-4 md:px-6 lg:px-8">
+        <div className="w-full  text-white p-8 md:p-12 relative z-10">
+          <p className="text-lg mb-4">Join the journey of excellence</p>
+          <h1 className="bg-green-600 inline-block px-6 py-3 text-4xl sm:text-5xl font-bold mb-6">
+            Enlighten Academy
+          </h1>
+          <p className="text-gray-300 text-base leading-relaxed mb-6">
+            Enlighten Academy is dedicated to empowering learners with top-notch
+            English language courses. Founded with a vision to enhance
+            communication skills and confidence, we have helped thousands
+            achieve their goals.
+          </p>
+          <div className="w-24 border-b-2 border-green-600"></div>{" "}
+          {/* Green underline */}
         </div>
       </div>
-      <div></div>
     </section>
   );
 };
