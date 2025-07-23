@@ -19,7 +19,7 @@ const zoom = 15;
 function Map() {
   return (
     <section className="w-full flex justify-center items-center bg-gray-100 py-10">
-      <div className="w-full max-w-7xl h-[400px] rounded-xl overflow-hidden shadow-2xl border">
+      <div className="w-full max-w-6xl h-[400px] rounded-xl overflow-hidden shadow-2xl border">
         <MapContainer
           center={position}
           zoom={zoom}

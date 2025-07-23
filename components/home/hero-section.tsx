@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const HeroSection = () => {
   return (
-    <section className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+    <section className="relative w-full h-[500px] md:h-[500px] overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <Image

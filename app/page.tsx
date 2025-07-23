@@ -2,6 +2,7 @@ import Copyright from "@/components/Copyright";
 import Footer from "@/components/Footer";
 import About from "@/components/home/About";
 import Admission from "@/components/home/Admission";
+import ContactUs from "@/components/home/ContactUs";
 import Courses from "@/components/home/Courses";
 import Gallery from "@/components/home/Gallery";
 import { HeroSection } from "@/components/home/hero-section";
@@ -19,6 +20,7 @@ export default function Home() {
       <Admission />
       <OurAdvantages />
       <Gallery />
+      <ContactUs />
       <MapWrapper />
       <Footer />
       <Copyright />

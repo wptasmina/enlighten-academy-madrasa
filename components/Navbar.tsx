@@ -1,9 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,8 +17,6 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-
-import { DialogTitle } from "@/components/ui/dialog"; 
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -71,7 +75,12 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
       ],
     },
     { name: "Teachers", href: "/teachers", icon: Users },
-    { name: "Admission", href: "/admission", icon: GraduationCap, badge: "New" },
+    {
+      name: "Admission",
+      href: "/admission",
+      icon: GraduationCap,
+      badge: "New",
+    },
     { name: "Testimonials", href: "/testimonials", icon: MessageSquare },
     { name: "Contact", href: "/contact", icon: Phone },
   ];
@@ -112,13 +121,16 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-4">
             {navigationItems.map((item, index) => (
               <div key={index} className="relative">
                 {item.submenu ? (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="flex items-center space-x-1">
+                      <Button
+                        variant="ghost"
+                        className="flex items-center space-x-1"
+                      >
                         <item.icon className="w-4 h-4" />
                         <span>{item.name}</span>
                         <ChevronDown className="w-3 h-3" />
@@ -140,8 +152,15 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 ) : (
-                  <Button variant="ghost" asChild className="flex items-center space-x-1">
-                    <Link href={item.href}>
+                  <Button
+                    variant="ghost"
+                    asChild
+                    className="flex items-center space-x-1"
+                  >
+                    <Link
+                      href={item.href}
+                      className="flex items-center space-x-1"
+                    >
                       <item.icon className="w-4 h-4" />
                       <span>{item.name}</span>
                       {item.badge && (
@@ -161,7 +180,10 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="flex items-center space-x-2 bg-transparent">
+                  <Button
+                    variant="outline"
+                    className="flex items-center space-x-2 bg-transparent"
+                  >
                     <div className="bg-green-100 p-1 rounded-full">
                       <User className="w-4 h-4 text-green-600" />
                     </div>
@@ -226,28 +248,33 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button onClick={onLoginClick} className="bg-green-600 hover:bg-green-700">
+              <Button
+                onClick={onLoginClick}
+                className="bg-green-600 hover:bg-green-700"
+              >
                 <LogIn className="w-4 h-4 mr-2" />
                 Login
               </Button>
             )}
           </div>
 
-            {/* Mobile Menu */}
-          <div className="md:hidden">
+          {/* Mobile & Tablet Menu Drawer */}
+          <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" aria-label="Open menu">
                   <Menu className="w-6 h-6" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-80">
-                <DialogTitle className="text-lg font-semibold">Menu</DialogTitle>
+                <SheetHeader>
+                  <SheetTitle>Menu</SheetTitle>
+                </SheetHeader>
                 <div className="flex flex-col h-full">
                   <div className="flex justify-between items-center pb-4 border-b">
                     <Image src="/logo.png" alt="logo" width={100} height={40} />
                   </div>
-                  <div className="space-y-2 py-4">
+                  <div className="space-y-2 py-4 flex-grow overflow-y-auto">
                     {navigationItems.map((item, i) => (
                       <div key={i}>
                         <Link
@@ -258,7 +285,9 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
                           <item.icon className="w-5 h-5 text-gray-600" />
                           <span>{item.name}</span>
                           {item.badge && (
-                            <Badge className="ml-auto text-xs bg-red-500 text-white">{item.badge}</Badge>
+                            <Badge className="ml-auto text-xs bg-red-500 text-white">
+                              {item.badge}
+                            </Badge>
                           )}
                         </Link>
                         {item.submenu && (
@@ -307,7 +336,6 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
               </SheetContent>
             </Sheet>
           </div>
-
         </div>
       </div>
     </nav>
