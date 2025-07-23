@@ -5,11 +5,9 @@ import Admission from "@/components/home/Admission";
 import Courses from "@/components/home/Courses";
 import Gallery from "@/components/home/Gallery";
 import { HeroSection } from "@/components/home/hero-section";
+import MapWrapper from "@/components/home/MapWrapper";
 import Milestones from "@/components/home/Milestones";
 import OurAdvantages from "@/components/home/OurAdvantages";
-import dynamic from "next/dynamic";
-
-const Map = dynamic(() => import("../components/home/Map"), { ssr: false });
 
 export default function Home() {
   return (
@@ -21,7 +19,7 @@ export default function Home() {
       <Admission />
       <OurAdvantages />
       <Gallery />
-      <Map />
+      <MapWrapper />
       <Footer />
       <Copyright />
     </div>

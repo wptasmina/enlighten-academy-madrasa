@@ -2,8 +2,9 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
+import "leaflet/dist/leaflet.css"; // Leaflet এর CSS অবশ্যই ইম্পোর্ট করতে হবে
 
-// Fix leaflet icon issues with TypeScript
+// Fix leaflet icon issues
 delete (L.Icon.Default as any).prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -12,27 +13,29 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
 });
 
-const position: L.LatLngExpression = [23.8103, 90.4125]; // Enlighten Academy এর লোকেশন
+const position: L.LatLngExpression = [23.8041, 90.3654]; // Mirpur 2, Dhaka
 const zoom = 15;
 
 function Map() {
   return (
-    <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
-      <MapContainer
-        center={position}
-        zoom={zoom}
-        scrollWheelZoom={false}
-        className="w-full h-full"
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={position}>
-          <Popup>Enlighten Academy Location</Popup>
-        </Marker>
-      </MapContainer>
-    </div>
+    <section className="w-full flex justify-center items-center bg-gray-100 py-10">
+      <div className="w-full max-w-7xl h-[400px] rounded-xl overflow-hidden shadow-2xl border">
+        <MapContainer
+          center={position}
+          zoom={zoom}
+          scrollWheelZoom={false}
+          className="w-full h-full z-0"
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={position}>
+            <Popup>Enlighten Academy Location</Popup>
+          </Marker>
+        </MapContainer>
+      </div>
+    </section>
   );
 }
 
