@@ -2,14 +2,14 @@ import React from "react";
 
 function Courses() {
   return (
-    <section className="py-12 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="p-4 md:p-8 lg:p-16 bg-gray-50">
+      <div className="">
         {/* Section Heading */}
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl font-bold text-gray-800">
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl mb-4 font-bold text-gray-800">
             Courses at Enlighten Academy
           </h2>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-gray-600 mb-8">
             Build your future with our expert English programs
           </p>
         </div>

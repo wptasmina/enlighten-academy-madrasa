@@ -3,7 +3,7 @@ import React from "react";
 
 function Copyright() {
   return (
-    <div className="bg-[#212121] text-gray-400 py-4 px-6 md:px-12 lg:px-24 flex flex-col md:flex-row items-center justify-between">
+    <div className="bg-[#212121] text-gray-400 py-4 px-4 md:px-8  lg:px-16 flex flex-col md:flex-row items-center justify-between">
       {/* Copyright Text */}
       <div className="mb-2 md:mb-0 text-center md:text-left">
         <p className="text-sm">Copyright All Right Reserved 2025. GoodLayers</p>

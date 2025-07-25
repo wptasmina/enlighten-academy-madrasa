@@ -22,15 +22,10 @@ import { Badge } from "@/components/ui/badge";
 import {
   Menu,
   BookOpen,
-  Users,
   GraduationCap,
-  Phone,
   User,
   LogIn,
   ChevronDown,
-  Home,
-  Info,
-  MessageSquare,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -47,7 +42,6 @@ interface NavbarProps {
 type NavigationItem = {
   name: string;
   href: string;
-  icon: React.ElementType;
   badge?: string;
   submenu?: {
     name: string;
@@ -59,31 +53,28 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigationItems: NavigationItem[] = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "About Us", href: "/about", icon: Info },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
     {
       name: "Courses",
       href: "/courses",
-      icon: BookOpen,
-      submenu: [
-        { name: "Noorani Course", href: "/courses#noorani" },
-        { name: "Nazera Course", href: "/courses#najera" },
-        { name: "Hifzul Quran", href: "/courses#hifz" },
-        { name: "Alim Course", href: "/courses#alim" },
-        { name: "Fazil Course", href: "/courses#fazil" },
-        { name: "Kamil Course", href: "/courses#kamil" },
-      ],
+      // submenu: [
+      //   { name: "Noorani Course", href: "/courses#noorani" },
+      //   { name: "Nazera Course", href: "/courses#najera" },
+      //   { name: "Hifzul Quran", href: "/courses#hifz" },
+      //   { name: "Alim Course", href: "/courses#alim" },
+      //   { name: "Fazil Course", href: "/courses#fazil" },
+      //   { name: "Kamil Course", href: "/courses#kamil" },
+      // ],
     },
-    { name: "Teachers", href: "/teachers", icon: Users },
+    // { name: "Teachers", href: "/teachers" },
     {
       name: "Admission",
       href: "/admission",
-      icon: GraduationCap,
-      badge: "New",
     },
-    { name: "Testimonials", href: "/testimonials", icon: MessageSquare },
-    { name: "Contact", href: "/contact", icon: Phone },
-    { name: "Dashboard", href: "/dashboard", icon: Phone },
+    // { name: "Testimonials", href: "/testimonials" },
+    { name: "Contact", href: "/contact" },
+    { name: "Dashboard", href: "/dashboard" },
   ];
 
   const getRoleColor = (role: string) => {
@@ -101,7 +92,6 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
       student: "Student",
       teacher: "Teacher",
       admin: "Admin",
-      parent: "Parent",
     };
     return roles[role as keyof typeof roles] || role;
   };
@@ -122,7 +112,7 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center">
             {navigationItems.map((item, index) => (
               <div key={index} className="relative">
                 {item.submenu ? (
@@ -132,14 +122,7 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
                         variant="ghost"
                         className="flex items-center space-x-1"
                       >
-                        <item.icon className="w-4 h-4" />
                         <span>{item.name}</span>
-                        <ChevronDown className="w-3 h-3" />
-                        {item.badge && (
-                          <Badge className="ml-1 text-xs bg-red-500 text-white">
-                            {item.badge}
-                          </Badge>
-                        )}
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-48">
@@ -162,13 +145,7 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
                       href={item.href}
                       className="flex items-center space-x-1"
                     >
-                      <item.icon className="w-4 h-4" />
                       <span>{item.name}</span>
-                      {item.badge && (
-                        <Badge className="ml-1 text-xs bg-red-500 text-white">
-                          {item.badge}
-                        </Badge>
-                      )}
                     </Link>
                   </Button>
                 )}
@@ -185,16 +162,9 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
                     variant="outline"
                     className="flex items-center space-x-2 bg-transparent"
                   >
-                    <div className="bg-green-100 p-1 rounded-full">
-                      <User className="w-4 h-4 text-green-600" />
-                    </div>
                     <div className="text-left">
                       <div className="text-sm font-medium">{user.name}</div>
-                      <Badge className={`text-xs ${getRoleColor(user.role)}`}>
-                        {getRoleText(user.role)}
-                      </Badge>
                     </div>
-                    <ChevronDown className="w-3 h-3" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56" align="end">
@@ -283,13 +253,7 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
                           onClick={() => setIsOpen(false)}
                           className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
                         >
-                          <item.icon className="w-5 h-5 text-gray-600" />
                           <span>{item.name}</span>
-                          {item.badge && (
-                            <Badge className="ml-auto text-xs bg-red-500 text-white">
-                              {item.badge}
-                            </Badge>
-                          )}
                         </Link>
                         {item.submenu && (
                           <div className="ml-8 mt-2 space-y-1">

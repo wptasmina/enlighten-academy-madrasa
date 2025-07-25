@@ -26,10 +26,10 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6">
+    <div className="flex flex-col items-center justify-center bg-gray-50 p-4 md:p-8 lg:p-16">
       <h1 className="text-3xl font-bold mb-10">Contact Us</h1>
 
-      <div className="w-full max-w-5xl bg-white rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden">
+      <div className="w-full bg-white rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden">
         {/* Left Side - Contact Form */}
         <div className="w-full md:w-1/2 p-8">
           {submitted ? (

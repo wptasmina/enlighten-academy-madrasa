@@ -93,12 +93,12 @@ const data = [
 
 function OurAdvantages() {
   return (
-    <section className="bg-[#1f1f1f] py-8 md:py-16 lg:py-20 xl:py-24 px-4 md:px-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
+    <section className="bg-[#1f1f1f] p-4 md:p-8 lg:p-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col items-start p-6 text-white  transition duration-300"
+            className="flex flex-col items-start  text-white  transition duration-300"
           >
             {/* Icon */}
             <div className="mb-4 text-5xl text-[var(--secondary-color)]">
@@ -114,7 +114,7 @@ function OurAdvantages() {
             </p>
 
             {/* Learn More Link */}
-            <a
+            {/* <a
               href={item.link}
               className="text-[var(--secondary-color)] hover:underline flex items-center text-sm font-semibold"
             >
@@ -133,7 +133,7 @@ function OurAdvantages() {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 ></path>
               </svg>
-            </a>
+            </a> */}
           </div>
         ))}
       </div>
