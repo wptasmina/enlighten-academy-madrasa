@@ -83,6 +83,7 @@ export default function Navbar({ user, onLoginClick, onLogout }: NavbarProps) {
     },
     { name: "Testimonials", href: "/testimonials", icon: MessageSquare },
     { name: "Contact", href: "/contact", icon: Phone },
+    { name: "Dashboard", href: "/dashboard", icon: Phone },
   ];
 
   const getRoleColor = (role: string) => {
