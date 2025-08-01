@@ -14,13 +14,13 @@ const data = [
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2"
-          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.747 0-3.332.477-4.5 1.253"
-        ></path>
+          d="M13 16h-1v-4h-1m1-4h.01M12 20.5a8.5 8.5 0 100-17 8.5 8.5 0 000 17z"
+        />
       </svg>
     ),
-    title: "Education Services",
+    title: "বিশেষায়িত মেন্টর",
     description:
-      "Enlighten Academy offers structured courses to help learners achieve excellence in English for academic, professional, and daily use.",
+      "প্রতিটি সেকশনের জন্য রয়েছে আলাদা প্রশিক্ষিত শিক্ষক, যারা আপনাকে হাতে ধরে শেখান।",
     link: "#",
   },
   {
@@ -36,13 +36,13 @@ const data = [
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2"
-          d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.5 16.086v-1.5c0-.91.72-1.643 1.6-1.643h.9c.88 0 1.6.733 1.6 1.643v1.5a18.022 18.022 0 01-4.548 1.414zM12 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm6.5-3A1.5 1.5 0 1115.5 6a1.5 1.5 0 013 0zm-1.5 6a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"
-        ></path>
+          d="M8 16l-4-4 4-4m8 8l4-4-4-4"
+        />
       </svg>
     ),
-    title: "International Hubs",
+    title: "ফ্লেক্সিবল ক্লাস টাইম",
     description:
-      "With a growing network of students globally, Enlighten Academy connects learners across borders and backgrounds.",
+      "শুক্রবার ব্যাচ, অনলাইন ক্লাস, কিডস ব্যাচ ও অনাবাসিক বিকেল ব্যাচ – আপনার সুবিধামতো সময় অনুযায়ী কোর্সের ব্যবস্থা।",
     link: "#",
   },
   {
@@ -58,13 +58,13 @@ const data = [
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2"
-          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-        ></path>
+          d="M12 8c1.657 0 3-1.343 3-3S13.657 2 12 2 9 3.343 9 5s1.343 3 3 3zm0 2c-2.21 0-4 1.79-4 4v2h8v-2c0-2.21-1.79-4-4-4z"
+        />
       </svg>
     ),
-    title: "Certified Programs",
+    title: "জব ইন্টারভিউ প্রস্তুতি",
     description:
-      "Our Bachelor's and Master's equivalent certifications are tailored to meet global standards and real-world needs.",
+      "স্পিকিং টেস্ট, ইন্টারভিউ প্র্যাকটিস ও পাবলিক স্পিকিং-এর মাধ্যমে ক্যারিয়ার রেডিনেস গড়ে তোলা হয়।",
     link: "#",
   },
   {
@@ -80,20 +80,20 @@ const data = [
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2"
-          d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m-1 4h1m8-10h1m-1 4h1m-1 4h1m-1 4h1m0 0h2m-2 0h-5m-9 0H3m2 0h5"
-        ></path>
+          d="M17 9V7a4 4 0 00-8 0v2a4 4 0 00-4 4v5h16v-5a4 4 0 00-4-4z"
+        />
       </svg>
     ),
-    title: "Campus Life",
+    title: "নিরাপদ ও মনোরম পরিবেশ",
     description:
-      "Beyond academics, Enlighten Academy fosters a vibrant student life through clubs, events, and leadership opportunities.",
+      "আবাসিক কোর্সের জন্য রয়েছে সার্বক্ষণিক শিক্ষক তত্ত্বাবধান, মনোরম পরিবেশ ও শীতাতপ নিয়ন্ত্রিত ক্লাসরুম।",
     link: "#",
   },
 ];
 
 function OurAdvantages() {
   return (
-    <section className="bg-[#1f1f1f] p-4 md:p-8 lg:p-16">
+    <section className="bg-[var(--bg-color)] p-6 md:p-8 lg:p-16">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {data.map((item, index) => (
           <div

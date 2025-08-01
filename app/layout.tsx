@@ -4,6 +4,8 @@ import "./globals.css";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Footer from "@/components/Footer";
+import Copyright from "@/components/Copyright";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,10 +35,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
       >
         <NavbarWrapper />
         {children}
+        <Footer />
+        <Copyright />
       </body>
     </html>
   );

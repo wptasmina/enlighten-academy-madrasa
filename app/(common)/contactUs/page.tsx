@@ -1,8 +1,7 @@
 "use client";
-
 import React, { useState } from "react";
 
-export default function ContactUs() {
+function page() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,24 +18,21 @@ export default function ContactUs() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // এখানে API কল বা ফর্ম সাবমিটের লজিক দিবে, এখন শুধু সাবমিটেড দেখাচ্ছি
+
     setSubmitted(true);
-    // ফর্ম রিসেট করতে চাইলে uncomment করো
+
     // setFormData({ name: "", email: "", message: "" });
   };
 
   return (
-    <div
-      id="contact"
-      className="flex flex-col items-center justify-center bg-gray-50 p-4 md:p-8 lg:p-16"
-    >
+    <div className="flex flex-col items-center justify-center bg-gray-50 p-4 md:p-8 lg:p-16">
       <h1 className="text-3xl md:text-4xl font-bold mb-2">Contact Us</h1>
       <p className="mb-8 text-center">
         At
         <span className="font-semibold text-green-600">Enlighten Academy</span>,
         our mission is to empower students with quality education, modern
         learning techniques, and a supportive environment. Feel free to reach
-        out — we're always here to guide you on your educational journey.
+        out — we are always here to guide you on your educational journey.
       </p>
       <div className="w-full bg-white rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden">
         {/* Left Side - Contact Form */}
@@ -104,7 +100,7 @@ export default function ContactUs() {
 
               <button
                 type="submit"
-                className="bg-[var(--secondary-color)] text-white px-6 py-3 rounded-md transition cursor-pointer"
+                className="bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 transition"
               >
                 Send Message
               </button>
@@ -114,23 +110,23 @@ export default function ContactUs() {
 
         {/* Right Side - Contact Info */}
         <div className="w-full md:w-1/2 bg-green-50 p-8 flex flex-col justify-center space-y-6">
-          <h2 className="text-2xl font-semibold mb-4">📍 আমাদের অফিস</h2>
+          <h2 className="text-2xl font-semibold mb-4">Our Office</h2>
           <p>
-            <strong>🏠 ঠিকানা:</strong> মিলি সুপারমার্কেট, কচুক্ষেত, মিরপুর ১৪,
-            ঢাকা
+            <strong>Address:</strong> Mirpur 2, Dhaka 1216, Bangladesh
           </p>
           <p>
-            <strong>📞 ফোন:</strong> 01914-045670 (হোয়াটসঅ্যাপ), 01840-996916
+            <strong>Phone:</strong> +880 1234 567890
           </p>
           <p>
-            <strong>✉️ ইমেইল:</strong> enlightenacademy930@gmail.com
+            <strong>Email:</strong> info@enlightenacademy.com
           </p>
           <p>
-            <strong>🕐 অফিস সময়:</strong> শনিবার - বৃহস্পতিবার, সকাল ৯টা –
-            সন্ধ্যা ৬টা
+            <strong>Working Hours:</strong> Sat - Thu, 9:00 AM - 6:00 PM
           </p>
         </div>
       </div>
     </div>
   );
 }
+
+export default page;

@@ -13,7 +13,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
 });
 
-const position: L.LatLngExpression = [23.8041, 90.3654]; // Mirpur 2, Dhaka
+const position: L.LatLngExpression = [23.808372, 90.364905]; // Mirpur 2, Dhaka
 const zoom = 15;
 
 function Map() {
@@ -31,7 +31,12 @@ function Map() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <Marker position={position}>
-            <Popup>Enlighten Academy Location</Popup>
+            <Popup>
+              <div className="text-sm font-medium">
+                <div>এনলাইটেন একাডেমি</div>
+                <div>কচুক্ষেত, মিরপুর ১৪, ঢাকা</div>
+              </div>
+            </Popup>
           </Marker>
         </MapContainer>
       </div>

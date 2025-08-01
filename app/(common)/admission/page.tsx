@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function Admission() {
+function page() {
   return (
     <div className="flex flex-col lg:flex-row  bg-gray-900 text-white font-inter">
       {/* Left Section: Image */}
@@ -39,12 +39,12 @@ function Admission() {
             it.
           </p>
           {/* <button className="bg-[var(--secondary-color)] hover:bg-[var(--button-hover-color)] text-white font-bold py-4 px-8 rounded shadow-lg transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer">
-            Apply Now
-          </button> */}
+                Apply Now
+              </button> */}
         </div>
       </div>
     </div>
   );
 }
 
-export default Admission;
+export default page;

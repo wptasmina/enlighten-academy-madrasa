@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Navbar from "./Navbar";
-import LoginModal from "./LoginModal";
 
 export default function NavbarWrapper() {
   const [user, setUser] = useState<{
@@ -10,7 +9,6 @@ export default function NavbarWrapper() {
     email: string;
     role: "student" | "teacher" | "admin" | "parent";
   } | null>(null);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const handleLogin = (userData: {
     name: string;
@@ -35,11 +33,6 @@ export default function NavbarWrapper() {
         user={user}
         onLoginClick={handleLoginClick}
         onLogout={handleLogout}
-      />
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-        onLogin={handleLogin}
       />
     </>
   );
