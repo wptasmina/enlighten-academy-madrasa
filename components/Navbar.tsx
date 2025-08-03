@@ -4,48 +4,52 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, LogIn } from "lucide-react";
+import { it } from "node:test";
 
 type NavigationItem = {
-  name: string;
+  label: string;
   href: string;
 };
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigationItems: NavigationItem[] = [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/aboutUs" },
+  const navLinks: NavigationItem[] = [
     {
-      name: "Courses",
-      href: "/courses",
+      label: "Home",
+      href: "/",
     },
-    // { name: "Teachers", href: "/teachers" },
     {
-      name: "Admission",
-      href: "/admission",
+      label: "Courses",
+      href: "/#courses",
     },
-    // { name: "Testimonials", href: "/testimonials" },
-    { name: "Contact us", href: "/contactUs" },
-    { name: "Dashboard", href: "/dashboard" },
+    {
+      label: "Reviews",
+      href: "/#reviews",
+    },
+    {
+      label: "Contact",
+      href: "/#contact",
+    },
+    {
+      label: "Login",
+      href: "/login",
+    },
+    {
+      label: "Sign Up",
+      href: "/sign-up",
+    },
   ];
-
-  // const navLinks = [
-  //   { href: "/", label: "Home" },
-  //   { href: "/courses", label: "Courses" },
-  //   { href: "/reviews", label: "Reviews" },
-  //   { href: "/contact", label: "Contact" },
-  // ];
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50 px-6 md:px-8 lg:px-16">
-      <div className="py-3 md:py-4 flex items-center justify-between">
+      <div className="py-3 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold ">
           <Image
             className="rounded"
             alt="Enlighten Academy"
-            src="/logo/EnlightenAcademy.jpg"
+            src="/logo/logo.jpg"
             width={45}
             height={45}
           />
@@ -53,30 +57,15 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6">
-          <Link
-            href="/"
-            className="text-gray-700 hover:text-[var(--primary-color)]"
-          >
-            Home
-          </Link>
-          <Link
-            href="/#courses"
-            className="text-gray-700 hover:text-indigo-600"
-          >
-            Courses
-          </Link>
-          <Link
-            href="/#reviews"
-            className="text-gray-700 hover:text-indigo-600"
-          >
-            Reviews
-          </Link>
-          <Link
-            href="/#contact"
-            className="text-gray-700 hover:text-indigo-600"
-          >
-            Contact
-          </Link>
+          {navLinks?.map((item, index) => (
+            <Link
+              key={index}
+              href={item?.href}
+              className="text-gray-700 hover:text-[var(--primary-color)]"
+            >
+              {item?.label}
+            </Link>
+          ))}
         </div>
 
         {/* Mobile Menu Button */}
@@ -115,27 +104,15 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden px-4 pb-4 space-y-2">
-          <Link href="/" className="block text-gray-700 hover:text-indigo-600">
-            Home
-          </Link>
-          <Link
-            href="/courses"
-            className="block text-gray-700 hover:text-indigo-600"
-          >
-            Courses
-          </Link>
-          <Link
-            href="/reviews"
-            className="block text-gray-700 hover:text-indigo-600"
-          >
-            Reviews
-          </Link>
-          <Link
-            href="/contact"
-            className="block text-gray-700 hover:text-indigo-600"
-          >
-            Contact
-          </Link>
+          {navLinks?.map((item, index) => (
+            <Link
+              key={index}
+              href={item?.href}
+              className="block text-gray-700 hover:text-indigo-600"
+            >
+              {item?.label}
+            </Link>
+          ))}
         </div>
       )}
     </nav>

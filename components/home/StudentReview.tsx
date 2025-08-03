@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import type { Settings } from "react-slick";
 
 // Dynamically import react-slick
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
@@ -88,7 +89,7 @@ const data = [
   },
 ];
 
-const settings = {
+const settings: Settings = {
   dots: true,
   infinite: true,
   speed: 600,
