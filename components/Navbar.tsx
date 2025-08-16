@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, LogIn } from "lucide-react";
-import { it } from "node:test";
+import { useRouter } from "next/navigation";
+import { AuthContext } from "@/context/AuthContext";
 
 type NavigationItem = {
   label: string;
@@ -13,6 +13,8 @@ type NavigationItem = {
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const { user, logout } = useContext(AuthContext);
 
   const navLinks: NavigationItem[] = [
     {
@@ -32,14 +34,23 @@ export default function Navbar() {
       href: "/#contact",
     },
     {
-      label: "Login",
-      href: "/login",
+      label: "Dashboard",
+      href: "/dashboard",
     },
-    {
-      label: "Sign Up",
-      href: "/sign-up",
-    },
+    // {
+    //   label: "Login",
+    //   href: "/login",
+    // },
+    // {
+    //   label: "Sign Up",
+    //   href: "/sign-up",
+    // },
   ];
+
+  const handleLogout = () => {
+    logout();
+    router.push("/login");
+  };
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50 px-6 md:px-8 lg:px-16">
@@ -66,6 +77,16 @@ export default function Navbar() {
               {item?.label}
             </Link>
           ))}
+          {user ? (
+            <button onClick={handleLogout} className="cursor-pointer">
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link href="/login">Login</Link>
+              <Link href="/sign-up">Sign Up</Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -113,6 +134,16 @@ export default function Navbar() {
               {item?.label}
             </Link>
           ))}
+          {user ? (
+            <button onClick={handleLogout} className="cursor-pointer">
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link href="/login">Login</Link>
+              <Link href="/sign-up">Sign Up</Link>
+            </>
+          )}
         </div>
       )}
     </nav>

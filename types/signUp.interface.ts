@@ -3,6 +3,7 @@ export default interface signUp {
   email: string;
   phone: string;
   gender: string;
+  district: string;
   password: string;
   confirmPassword: string;
 }

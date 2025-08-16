@@ -8,7 +8,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className=" grid grid-cols-12 bg-gray-100">
+    <div className="grid grid-cols-12 bg-gray-100">
       {/* Mobile menu button */}
       <div className="lg:hidden fixed top-4 left-4 z-50">
         <button
@@ -19,11 +19,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         </button>
       </div>
 
-      <div className="col-span-3 min-h-screen">
+      <div className="lg:col-span-2">
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
 
-      <div className="col-span-3 min-h-screen mt-10">{children}</div>
+      <div className="col-span-12 lg:col-span-10 min-h-screen pl-4">
+        {children}
+      </div>
     </div>
   );
 };

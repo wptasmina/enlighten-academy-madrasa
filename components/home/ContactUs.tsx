@@ -1,6 +1,8 @@
 "use client";
 
+import { apiFetch } from "@/utils/api";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -9,20 +11,35 @@ export default function ContactUs() {
     message: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // এখানে API কল বা ফর্ম সাবমিটের লজিক দিবে, এখন শুধু সাবমিটেড দেখাচ্ছি
-    setSubmitted(true);
-    // ফর্ম রিসেট করতে চাইলে uncomment করো
-    // setFormData({ name: "", email: "", message: "" });
+
+    try {
+      const response = await apiFetch("/contactUs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log(response);
+
+      if (response.ok) {
+        toast.success("✅ Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" }); // Reset form
+      } else {
+        toast.error("❌ Failed to send message");
+      }
+    } catch {
+      toast.error("❌ Something went wrong!");
+    }
   };
 
   return (
@@ -36,80 +53,67 @@ export default function ContactUs() {
         <span className="font-semibold text-green-600">Enlighten Academy</span>,
         our mission is to empower students with quality education, modern
         learning techniques, and a supportive environment. Feel free to reach
-        out — we're always here to guide you on your educational journey.
+        out — we are always here to guide you on your educational journey.
       </p>
       <div className="w-full bg-white rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden">
         {/* Left Side - Contact Form */}
         <div className="w-full md:w-1/2 p-8">
-          {submitted ? (
-            <div
-              className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
-              role="alert"
-            >
-              <strong className="font-bold">Thank you!</strong>
-              <span className="block sm:inline">
-                {" "}
-                Your message has been sent.
-              </span>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block mb-2 font-semibold">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Your Name"
+              />
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block mb-2 font-semibold">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                  placeholder="Your Name"
-                />
-              </div>
 
-              <div>
-                <label htmlFor="email" className="block mb-2 font-semibold">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                  placeholder="you@example.com"
-                />
-              </div>
+            <div>
+              <label htmlFor="email" className="block mb-2 font-semibold">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="you@example.com"
+              />
+            </div>
 
-              <div>
-                <label htmlFor="message" className="block mb-2 font-semibold">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-2 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
-                  placeholder="Write your message here..."
-                />
-              </div>
+            <div>
+              <label htmlFor="message" className="block mb-2 font-semibold">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={5}
+                className="w-full px-4 py-2 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Write your message here..."
+              />
+            </div>
 
-              <button
-                type="submit"
-                className="bg-[var(--secondary-color)] text-white px-6 py-3 rounded-md transition cursor-pointer"
-              >
-                Send Message
-              </button>
-            </form>
-          )}
+            <button
+              type="submit"
+              className="bg-[var(--secondary-color)] text-white px-6 py-3 rounded-md transition cursor-pointer"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
 
         {/* Right Side - Contact Info */}

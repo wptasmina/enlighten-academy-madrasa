@@ -36,17 +36,17 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/aboutUs" className="hover:text-white">
+              <Link href="/#contact" className="hover:text-white">
                 ℹ️ About Us
               </Link>
             </li>
             <li>
-              <Link href="/courses" className="hover:text-white">
+              <Link href="/#courses" className="hover:text-white">
                 📚 Courses
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-white">
+              <Link href="/#contact" className="hover:text-white">
                 📞 Contact Us
               </Link>
             </li>

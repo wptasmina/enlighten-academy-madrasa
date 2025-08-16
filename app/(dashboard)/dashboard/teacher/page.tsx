@@ -1,9 +1,12 @@
-import React from 'react'
+import AllTeacher from "@/components/dashboard/teacher/AllTeacher";
+import React from "react";
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <div>
+      <AllTeacher />
+    </div>
+  );
 }
 
-export default page
+export default page;
